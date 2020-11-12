@@ -20,12 +20,8 @@ def invoice_list(request):
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
-def invoice_detail(request, pk):
-    try:
-        invoice = Invoice.objects.get(pk=pk)
-    except Exception:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
+def invoice_detail(request, x):
+    invoice = Invoice.objects.get(id=x)
     if request.method == 'GET':
         serializer = InvoiceSerializer(invoice)
         return Response(serializer.data)
